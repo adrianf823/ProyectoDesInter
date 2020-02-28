@@ -45,10 +45,13 @@ export class RegistroComponent implements OnInit {
   }
   onRegister(formValue): void {
     this.usuario = new NuevoUsuario(formValue.Nombre, formValue.email, formValue.password, formValue.Foto);
+    this.usuario.roles.push("admin");
     this.authService.registro(this.usuario).subscribe(data => {
       this.isRegister = true;
       this.isRegisterFail = false;
-      this.router.navigateByUrl("/usuarios")
+      alert("Registrado correctamente")
+      localStorage.setItem("logeado","1");
+      this.router.navigateByUrl("/login")
     },
       (error: any) => {
         this.errorMsg = error.error.mensaje;

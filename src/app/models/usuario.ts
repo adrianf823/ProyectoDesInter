@@ -4,4 +4,6 @@ export class UsuarioModel {
     email: string;
     password?: string;
     foto: string;
+    roles?;
+    admin?:boolean=true;
 }

@@ -16,13 +16,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import { RegistroComponent } from './Components/registro/registro.component';
 import { UsuariosComponent } from './Components/usuarios/usuarios.component';
+import { FormModalAPComponentUser } from './Components/form-modal-Usuario/form-modal-ap.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    FormModalAPComponentUser
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,9 @@ import { UsuariosComponent } from './Components/usuarios/usuarios.component';
     MatButtonModule 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    FormModalAPComponentUser
+  ]
 })
 export class AppModule { }

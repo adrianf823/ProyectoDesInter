@@ -54,6 +54,7 @@ console.log(this.usuario)
       this.isLogged = true;
       this.isLoginFail = false;
       this.roles = this.tokenService.getAuthorities();
+      localStorage.setItem("logeado","1");
       this.router.navigateByUrl("/usuarios")
     },
       (err: any) => {
