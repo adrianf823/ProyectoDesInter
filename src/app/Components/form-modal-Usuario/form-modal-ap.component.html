@@ -12,7 +12,7 @@
                         <label for="titulo">Foto</label>
                         <input type="file" 
                           class="form-control"
-                            (change)="cambiaPreview($event);handleFileSelect($event)" #file accept="image/*"/>
+                            (change)="cambiaPreview($event);onFileChanged($event)" #file accept="image/*"/>
                       </div>
             <div class="form-group">
               <label for="Nombre">Nombre (Tienes que volver a loguearte)</label>

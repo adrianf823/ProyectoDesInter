@@ -8,6 +8,7 @@ const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json','
 })
 export class UserService {
 
+  
   private authURL = 'http://localhost:8080/api/Usuarios/';
 token = window.sessionStorage.getItem("AuthToken")
   constructor(private http: HttpClient) { }
@@ -15,6 +16,7 @@ token = window.sessionStorage.getItem("AuthToken")
   getUsuarios() {
     return this.http.get<[]>(this.authURL+'lista',cabecera);
   }
+  
   putUsuario(id,usuarios: UsuarioModel) {
     const usuarioTemp = {
       ...usuarios

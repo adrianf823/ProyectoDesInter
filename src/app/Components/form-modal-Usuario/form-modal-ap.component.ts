@@ -4,16 +4,28 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { finalize } from "rxjs/operators";
 import {UsuarioModel} from "../../models/usuario";
 import Swal from 'sweetalert2';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import {AuthService} from '../../services/auth.service'
 import {UserService} from '../../services/user.service'
 import { Router } from '@angular/router';
 
+const cabecera = {headers: new HttpHeaders({'Authorization': 'Bearer '+window.sessionStorage.getItem("AuthToken")})};
 @Component({
   selector: 'app-form-modal',
   templateUrl: './form-modal-ap.component.html'
 })
 export class FormModalAPComponentUser {
+  
+  nombrefoto;
+  selectedFile: File;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
+  imageName: any;
+  foto1=localStorage.getItem("foto1")
+  foto2=localStorage.getItem("foto2")
+  fotouser=JSON.parse(localStorage.getItem("fotousuario"));
   Usuario:UsuarioModel=JSON.parse(localStorage.getItem("usuario"));
   @Input() public modif=false; 
   nombreIcono;
@@ -23,7 +35,7 @@ export class FormModalAPComponentUser {
   user: UsuarioModel;
   myForm: FormGroup;
   filePath;
-  Imgsrc='/assets/image-placeholder.jpg';
+  Imgsrc=this.Usuario.fotocomp;
   Imgpreview:any = null;
   file;
   img;
@@ -40,6 +52,8 @@ export class FormModalAPComponentUser {
     this.createForm();
   }
   ngOnInit(): void {
+    var foto=this.foto1+this.foto2
+    console.log(this.fotouser)
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
       this.idm.setValue(this.Usuario.id, {
@@ -48,7 +62,7 @@ export class FormModalAPComponentUser {
     this.Fotom.setValue(this.Usuario.foto, {
       onlySelf: true
     })
-    this.Imgsrc=this.Usuario.foto
+    this.Imgsrc=foto
     //if(this.peliculam.portada!=null){
     //this.Imgsrc=this.peliculam.portada
     //}
@@ -307,16 +321,80 @@ get formControls(){
 
 submitForm(formValue)
 {
+  if(this.selectedFile==null || this.selectedFile.name=="" || this.selectedFile==undefined){
+    if(formValue.password!=""){
+      var user:UsuarioModel={
+      nombre:formValue.nombre,
+      email:formValue.email,
+      password:formValue.password,
+      foto:this.Usuario.foto
+      
+      }
+      }else{
+        console.log("aaaa")
+        var user:UsuarioModel={
+          nombre:formValue.nombre,
+          email:formValue.email,
+          foto:this.Usuario.foto
+          
+          }
+      }
+  }else{
+this.onUpload()
+if(formValue.password!=""){
+var user:UsuarioModel={
+nombre:formValue.nombre,
+email:formValue.email,
+password:formValue.password,
+foto:this.nombrefoto,
+fotocomp:""
 
-this.userService.putUsuario(formValue.id,formValue).subscribe(resp=>{
+}
+}else{
+  console.log("aaaa")
+  var user:UsuarioModel={
+    nombre:formValue.nombre,
+    email:formValue.email,
+    foto:this.nombrefoto,
+    fotocomp:""
+    
+    }
+}
+  }
+console.log(user)
+this.userService.putUsuario(formValue.id,user).subscribe(resp=>{
+  console.log(user)
   if(formValue.nombre!=this.Usuario.nombre){
     window.sessionStorage.clear();
     this.router.navigateByUrl("/login")
   }
   this.activeModal.close();
 })
+}
+public onFileChanged(event) {
+  //Select File
+  this.selectedFile = event.target.files[0];
+}
+
+
+//Gets called when the user clicks on submit to upload the image
+onUpload() {
+  console.log(this.selectedFile);
+  console.log(this.Imgpreview)
+  //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+  const uploadImageData = new FormData();
+  this.nombrefoto=this.selectedFile.name+this.Usuario.nombre+new Date().getMonth()+new Date().getDay()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds();
+  uploadImageData.append('imageFile', this.selectedFile, this.nombrefoto);
+
+  //Make a call to the Spring Boot Application to save the image
+  this.http.post('http://localhost:8080/image/upload', uploadImageData,cabecera)
+    .subscribe((response) => {
+      alert("mmm")
+    }
+    );
 
 
 }
+
 
 }

@@ -1,10 +1,10 @@
 <div>
 <div id="mySidenav" class="sidenav">
-    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" >Usuarios</a>
-    <a href="#">Clientes</a>
-    <a href="#">Proveedores</a>
-    <a href="#">Productos</a>
-    <a href="#">Presupuestos</a>
+    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/settings-4-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
+    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/user-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clientes</a>
+    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/shop-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proveedores</a>
+    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/cart-70-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Productos</a>
+    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/view-details-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presupuestos</a>
   </div>
   
   <!-- Use any element to open the sidenav -->
@@ -39,7 +39,7 @@
     </li>
 </ul>&nbsp;&nbsp;
       <div (click)="formUsuario()" style="cursor: pointer;">
-  <img alt="profile" [src]="usuario.foto" style="max-width: 55px;" class="rounded-circle z-depth-0">
+  <img alt="profile" [src]="usuario.fotocomp" style="max-width: 55px;" class="rounded-circle z-depth-0">
       <img src="../../../assets/flecha.png" style="max-width: 24px;" />
     </div>
     </div>
@@ -61,7 +61,7 @@
         <th>Operaciones</th>
                 </thead>
         <tr *ngFor="let m of usuariosArray | paginate: { itemsPerPage: 10, currentPage: p }">
-    <td><img [src]="m.foto" alt="" style="max-width: 60px;" class="zoomIt"></td>
+    <td><img [src]="m.fotocomp" alt="" style="max-width: 60px;" class="zoomIt"></td>
     <td>{{m.nombre}}</td>
     <td>{{m.email}}</td>
     <td><button (click)="EliminarUsuario(m.id)" class="btn btn-danger">Eliminar</button></td>

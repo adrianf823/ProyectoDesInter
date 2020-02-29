@@ -4,6 +4,7 @@ import { LoginUsuario } from '../models/login-usuario';
 import { Observable } from 'rxjs';
 import { JwtModel } from '../models/jwt-model';
 import { NuevoUsuario } from '../models/nuevo-usuario';
+import { Router } from '@angular/router';
 
 const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
@@ -14,7 +15,7 @@ export class AuthService {
 
   private authURL = 'http://localhost:8080/api/auth/';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, public router:Router) { }
 
   public login(usuario: LoginUsuario): Observable<JwtModel> {
     return this.httpClient.post<JwtModel>(this.authURL + 'login', usuario, cabecera);

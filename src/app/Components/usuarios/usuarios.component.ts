@@ -5,23 +5,30 @@ import { FormModalAPComponentUser } from 'src/app/Components/form-modal-Usuario/
 import {AuthService} from '../../services/auth.service'
 import { Router } from '@angular/router';
 import { UsuarioModel } from '../../models/usuario';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': 'Bearer '+window.sessionStorage.getItem("AuthToken")})};
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
+  base64Data: any;
+  retrieveResonse: any;
 usuariosArray: UsuarioModel[]=[]
 usuario:UsuarioModel;
 menu:boolean=false;
 rolModif:boolean
-  constructor(public usuariosServ:UserService, public modalService:NgbModal, public authservice: AuthService,public router:Router) { }
+  constructor(public usuariosServ:UserService, public modalService:NgbModal, public authservice: AuthService,public router:Router,public http:HttpClient) { }
 
   ngOnInit() {
       this.usuariosServ.getUsuarios().subscribe(resp => {
         this.usuariosArray=resp;
+        this.obtenerImagenes().subscribe(resp=>{
+          this.obtenerUsuario()
+        })
         console.log("ojo")
-        this.obtenerUsuario()
         console.log(this.usuario.roles)
       })
       if(localStorage.getItem("logeado")=="1"){
@@ -39,8 +46,21 @@ rolModif:boolean
         if(nombre == window.sessionStorage.getItem("AuthUserName")){
           
           this.usuario= this.usuariosArray[indice];
+          console.log(this.usuariosArray[indice])
+          setTimeout(() => {
+            var fotolenght = this.usuario.fotocomp.length;
+          var mitadfoto = fotolenght/2;
+          var foto1 = this.usuario.fotocomp.substr(0,mitadfoto);
+          var foto2 = this.usuario.fotocomp.substr(mitadfoto,fotolenght);
+          console.log(foto1)
+          localStorage.setItem("foto1",foto1)
+          localStorage.setItem("foto2",foto2)
+          }, 200);
+          
+          console.log(this.usuariosArray[indice])
           localStorage.setItem("usuario",JSON.stringify(this.usuario))
           console.log(this.usuario)
+          console.log("aaaaaaaaaa")
         }
       }
     }
@@ -96,9 +116,26 @@ rolModif:boolean
   })
 
   }
-
- 
-
+    //Gets called when the user clicks on retieve image button to get the image from back end
+    getImage(user:UsuarioModel) {
+      //Make a call to Sprinf Boot to get the Image Bytes.
+      this.http.get('http://localhost:8080/image/get/' + user.foto,cabecera)
+        .subscribe(
+          res => {
+            this.retrieveResonse = res;
+            this.base64Data = this.retrieveResonse.picByte;
+            user.fotocomp = 'data:image/jpeg;base64,' + this.base64Data;
+          }
+        );
+    }
+obtenerImagenes():Observable<any>{
+  var odiosmio;
+    this.usuariosArray.forEach(element => {
+      this.getImage(element)
+      odiosmio=this.usuariosServ.getUsuarios()
+    });
+    return odiosmio;
+  }
   }
 
 

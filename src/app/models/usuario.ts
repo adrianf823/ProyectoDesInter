@@ -3,7 +3,8 @@ export class UsuarioModel {
     nombre: string;
     email: string;
     password?: string;
-    foto: string;
+    foto?: string;
+    fotocomp?:string;
     roles?;
     admin?:boolean=true;
 }
