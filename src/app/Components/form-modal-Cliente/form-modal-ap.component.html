@@ -1,0 +1,39 @@
+<div class="modal-header" #child1>
+        <h4 class="modal-title">Formulario Película</h4>
+        <button type="button" class="close" aria-label="Close"
+         (click)="activeModal.dismiss('Cross click')">X
+        </button>
+      </div>
+      <form [formGroup]="myForm" (ngSubmit)="submitForm(myForm.value)">
+        <div class="modal-boy">
+          <div class="container">
+            <div class="form-group">
+              <label for="titulo">Nombre</label>
+              <input type="text" 
+                class="form-control"
+                formControlName="nombre" />
+                <div class="text-danger" *ngIf="isSubmitted && formControls.nombre.errors?.required">Este campo es necesario</div>
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Teléfono</label>
+              <input type="text" 
+              class="form-control"
+              formControlName="telefono" />
+              <div class="text-danger" *ngIf="isSubmitted && formControls.telefono.errors?.required">Este campo es necesario</div>
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Dirección</label>
+              <input type="text" 
+              class="form-control"
+              formControlName="direccion" />
+              <div class="text-danger" *ngIf="isSubmitted && formControls.direccion.errors?.required">Este campo es necesario</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success"
+            >
+            Añadir
+          </button>
+        </div>
+      </form>

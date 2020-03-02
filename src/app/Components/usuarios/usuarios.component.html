@@ -1,10 +1,10 @@
 <div>
 <div id="mySidenav" class="sidenav">
-    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/settings-4-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
-    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/user-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clientes</a>
-    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/shop-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proveedores</a>
-    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/cart-70-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Productos</a>
-    <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/view-details-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presupuestos</a>
+  <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/settings-4-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
+  <a class="nav-link" [routerLink]="['/clientes']" routerLinkActive="router-link-active" ><img src="../../../assets/user-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clientes</a>
+  <a class="nav-link" [routerLink]="['/proveedores']" routerLinkActive="router-link-active" ><img src="../../../assets/shop-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proveedores</a>
+  <a class="nav-link" [routerLink]="['/productos']" routerLinkActive="router-link-active" ><img src="../../../assets/cart-70-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Productos</a>
+  <a class="nav-link" [routerLink]="['/presupuestos']" routerLinkActive="router-link-active" ><img src="../../../assets/view-details-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presupuestos</a>
   </div>
   
   <!-- Use any element to open the sidenav -->
@@ -13,7 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <img src="../../../assets/product-shopping-cart-supermarket-logo-logo-super-mercado.png" alt="" style="max-width: 100px;">
-    <a class="navbar-brand" href="#" > &nbsp;&nbsp;Tienda Online</a>
+    <a class="navbar-brand" [routerLink]="['/usuarios']" > &nbsp;&nbsp;Tienda Online</a>
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <div class="menub" (click)="closeNav()" *ngIf="menu">

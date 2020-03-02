@@ -1,0 +1,81 @@
+<div>
+    <div id="mySidenav" class="sidenav">
+        <a class="nav-link" [routerLink]="['/usuarios']" routerLinkActive="router-link-active" ><img src="../../../assets/settings-4-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usuarios</a>
+        <a class="nav-link" [routerLink]="['/clientes']" routerLinkActive="router-link-active" ><img src="../../../assets/user-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clientes</a>
+        <a class="nav-link" [routerLink]="['/proveedores']" routerLinkActive="router-link-active" ><img src="../../../assets/shop-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proveedores</a>
+        <a class="nav-link" [routerLink]="['/productos']" routerLinkActive="router-link-active" ><img src="../../../assets/cart-70-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Productos</a>
+        <a class="nav-link" [routerLink]="['/presupuestos']" routerLinkActive="router-link-active" ><img src="../../../assets/view-details-32.png" alt="" style="position: absolute;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Presupuestos</a>
+      </div>
+      
+      <!-- Use any element to open the sidenav -->
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-image: url(https://www.123freevectors.com/wp-content/original/108131-light-blue-wave.jpg);">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="../../../assets/product-shopping-cart-supermarket-logo-logo-super-mercado.png" alt="" style="max-width: 100px;">
+        <a class="navbar-brand" [routerLink]="['/usuarios']" > &nbsp;&nbsp;Tienda Online</a>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <div class="menub" (click)="closeNav()" *ngIf="menu">
+                <div class="menu"></div>
+                <div class="menu"></div>
+                <div class="menu"></div>
+                </div>
+                <div class="menub" (click)="openNav()" *ngIf="!menu">
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    <div class="menu"></div>
+                    </div>
+    
+          <form class="form-inline my-2 my-lg-0" style="margin-left: 7%;">
+              
+            <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search" id="myInput" (keyup)="buscarHospital()" size="50">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <ul class="navbar-nav" style="margin-left: 10%;">
+            <h6 style="color: white; margin-top: 5px;">{{Usuario.email}}</h6>&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item active">
+            <button class="btn btn-outline-light my-2 my-sm-0" (click)="logOut()" href="">Log Out</button>
+        </li>
+    </ul>&nbsp;&nbsp;
+          <div (click)="formUsuario()" style="cursor: pointer;">
+      <img alt="profile" [src]="fotoUser" style="max-width: 55px;" class="rounded-circle z-depth-0">
+          <img src="../../../assets/flecha.png" style="max-width: 24px;" />
+        </div>
+        </div>
+      </nav>
+    </div>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+      <div id="main">
+        <h1 style="text-align: center;">Productos</h1>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <br>
+                <div class="row">
+                    <button class="btn btn-success" (click)="anadirProveedor()" style="margin-left: 80%;margin-bottom: 20px;">Crear producto</button>
+                    <table class="table" id="myTable">
+                        <thead class="thead-dark">
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Proveedor</th>
+                <th>Precio</th>
+                <th>Operaciones</th>
+                        </thead>
+                <tr *ngFor="let m of provArray | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+            <td><img [src]="m.foto" alt="" style="max-width: 60px;" class="zoomIt"></td>
+            <td>{{m.nombre}}</td>
+            <td>{{m.proveedor}}</td>
+            <td>{{m.precio}}€</td>
+            <td><button (click)="eliminarProveedor(m,i)" class="btn btn-danger">Eliminar</button>&nbsp;&nbsp;
+                <button (click)="modificarProveedor(m,i)" class="btn btn-warning">Editar</button></td>
+                </tr>
+                
+                </table>
+                    
+            </div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+            <div class="col-1"></div>
+            </div>
+      </div>

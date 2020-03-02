@@ -15,7 +15,7 @@ z-index: -1;">
             <h5 class="card-title text-center">Iniciar sesión</h5>
             <form [formGroup]="myForm" (ngSubmit)="onLogin(myForm.value)" class="form-signin">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Email" formControlName="email"
+                <input matInput placeholder="Nombre de Usuario" formControlName="email"
                        [errorStateMatcher]="matcher">
                 <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                   Please enter a valid email address
