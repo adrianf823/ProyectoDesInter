@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { UsuarioModel } from '../../models/usuario';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { error } from 'util';
 const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': 'Bearer '+window.sessionStorage.getItem("AuthToken")})};
 @Component({
   selector: 'app-usuarios',
@@ -30,7 +31,7 @@ rolModif:boolean
         })
         console.log("ojo")
         console.log(this.usuario.roles)
-      })
+      },error=>this.logOut())
       if(localStorage.getItem("logeado")=="1"){
         localStorage.setItem("logeado","0");
         location.reload();

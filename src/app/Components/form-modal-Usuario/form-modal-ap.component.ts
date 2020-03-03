@@ -369,7 +369,11 @@ this.userService.putUsuario(formValue.id,user).subscribe(resp=>{
     this.router.navigateByUrl("/login")
   }
   this.activeModal.close();
-})
+},error=>this.logOut())
+}
+logOut(){
+  window.sessionStorage.clear();
+  this.router.navigateByUrl("/login")
 }
 public onFileChanged(event) {
   //Select File
