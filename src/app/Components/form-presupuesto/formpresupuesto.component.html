@@ -54,16 +54,23 @@
                 <br>
                 <div class="col">
                     <div class="row">
-                    <h5>Nombre: </h5><input [(ngModel)]="nombrePresup" type="text" (change)="actualizarPresupuesto()">
+                    <h5>Nombre: </h5>
                 </div>
                 <div class="row">
-                    <h5>Cliente: </h5><select (change)="cambiarCliente($event)">
+<input [(ngModel)]="nombrePresup" type="text" (change)="actualizarPresupuesto()">
+                </div>
+                <div class="row" style="margin-top: 2%;">
+                    <h5>Cliente: </h5>
+                </div>
+                <div class="row">
+                    <select (change)="cambiarCliente($event)" style="width: 17%;">
                         <option  *ngFor="let item of clientesArray">{{item.nombre}}</option>
                     </select>
                 </div>
                 </div>
                 <div class="row">
                     <button class="btn btn-success" (click)="anadirProd()" style="margin-left: 80%;margin-bottom: 20px;">Crear producto</button>
+                    <button  class="btn btn-success" (click)="generarPDF()" style="margin-left: 80%;margin-bottom: 20px;">PDF</button>
                     <table class="table" id="myTable">
                         <thead class="thead-dark">
                 <th>Foto</th>
