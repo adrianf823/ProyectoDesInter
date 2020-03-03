@@ -183,6 +183,7 @@ this.isSubmitted=true;
 if(this.myForm.valid){
   if(!this.modif){
 this.service.crearCliente(formValue).subscribe(resp=>{
+  console.log(resp)
   this.isSubmitted=false;
   this.activeModal.close();
 }

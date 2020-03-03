@@ -1,6 +1,8 @@
 export class PresupuestoModel {
 
-    id:string;
-    cliente:string;
-    
+    id?:string;
+    nombre:string;
+    cliente?:string;
+    subtotal?:number;
+    total?:number;
 }

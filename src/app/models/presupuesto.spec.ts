@@ -1,7 +1,7 @@
-import { Presupuesto } from './presupuesto';
+import { PresupuestoModel } from './presupuesto';
 
 describe('Presupuesto', () => {
   it('should create an instance', () => {
-    expect(new Presupuesto()).toBeTruthy();
+    expect(new PresupuestoModel()).toBeTruthy();
   });
 });

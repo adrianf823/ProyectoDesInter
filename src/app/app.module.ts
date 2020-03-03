@@ -28,6 +28,8 @@ import { ClientesComponent } from './Components/clientes/clientes.component';
 import { ProveedoresComponent } from './Components/proveedores/proveedores.component';
 import { ProductosComponent } from './Components/productos/productos.component';
 import { PresupuestosComponent } from './Components/presupuestos/presupuestos.component';
+import { FormpresupuestoComponent } from './Components/form-presupuesto/formpresupuesto.component';
+import { FormModalAPComponentPresupProduct } from './Components/form-modal-PresupProduct/form-modal-ap.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +41,12 @@ import { PresupuestosComponent } from './Components/presupuestos/presupuestos.co
     FormModalAPComponentCliente,
     FormModalAPComponentProveedor,
     FormModalAPComponentProducto,
+    FormModalAPComponentPresupProduct,
     ClientesComponent,
     ProveedoresComponent,
     ProductosComponent,
-    PresupuestosComponent
+    PresupuestosComponent,
+    FormpresupuestoComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,8 @@ import { PresupuestosComponent } from './Components/presupuestos/presupuestos.co
     FormModalAPComponentUser,
     FormModalAPComponentCliente,
     FormModalAPComponentProveedor,
-    FormModalAPComponentProducto
+    FormModalAPComponentProducto,
+    FormModalAPComponentPresupProduct
   ]
 })
 export class AppModule { }

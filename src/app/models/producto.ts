@@ -1,9 +1,9 @@
 export class ProductoModel {
 
-    id:string;
+    id?:string;
     nombre:string;
     foto:string;
-    precio:number;
+    precio:any;
     proveedor:string;
-    cantidad?:number;
+    cantidad?:any;
 }
