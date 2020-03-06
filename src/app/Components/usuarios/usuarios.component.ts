@@ -8,6 +8,7 @@ import { UsuarioModel } from '../../models/usuario';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { error } from 'util';
+import Swal from 'sweetalert2'
 const cabecera = {headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': 'Bearer '+window.sessionStorage.getItem("AuthToken")})};
 @Component({
   selector: 'app-usuarios',
@@ -101,11 +102,30 @@ rolModif:boolean
     }
   }
   EliminarUsuario(id){
+    Swal.fire({
+      title: `¿Estás seguro?`,
+      text: 'No podrás volver atrás!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
     this.usuariosServ.deleteUsuario(id).subscribe(res =>{
       this.usuariosServ.getUsuarios().subscribe(resp => {
         this.usuariosArray=resp;
+        Swal.fire({
+          text:'Usuario eliminado con exito',
+          icon: 'success',
+          timer: 2000
+        }).then((r)=>{
+          location.reload()
+        })
       })
     })
+  }
+})
   }
   formUsuario(){
     const modalRef = this.modalService.open(FormModalAPComponentUser);
