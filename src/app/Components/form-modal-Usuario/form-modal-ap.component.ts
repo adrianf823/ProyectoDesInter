@@ -393,7 +393,7 @@ onUpload() {
   //Make a call to the Spring Boot Application to save the image
   this.http.post('http://localhost:8080/image/upload', uploadImageData,cabecera)
     .subscribe((response) => {
-      alert("mmm")
+      localStorage.setItem("logeado","2")
     }
     );
 

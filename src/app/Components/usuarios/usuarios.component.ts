@@ -33,6 +33,10 @@ rolModif:boolean
         console.log("ojo")
         console.log(this.usuario.roles)
       },error=>this.logOut())
+      if(localStorage.getItem("logeado")=="2"){
+        localStorage.setItem("logeado","1");
+        location.reload();
+      }
       if(localStorage.getItem("logeado")=="1"){
         localStorage.setItem("logeado","0");
         location.reload();
@@ -51,12 +55,14 @@ rolModif:boolean
           console.log(this.usuariosArray[indice])
           setTimeout(() => {
             var fotolenght = this.usuario.fotocomp.length;
+            console.log(fotolenght)
           var mitadfoto = fotolenght/2;
           var foto1 = this.usuario.fotocomp.substr(0,mitadfoto);
           var foto2 = this.usuario.fotocomp.substr(mitadfoto,fotolenght);
           console.log(foto1)
           localStorage.setItem("foto1",foto1)
           localStorage.setItem("foto2",foto2)
+          console.log("ala")
           }, 200);
           
           console.log(this.usuariosArray[indice])
@@ -156,6 +162,11 @@ obtenerImagenes():Observable<any>{
       odiosmio=this.usuariosServ.getUsuarios()
     });
     return odiosmio;
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    localStorage.setItem("logeado","1");
   }
   }
 

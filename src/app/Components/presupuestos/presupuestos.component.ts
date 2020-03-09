@@ -172,7 +172,8 @@ setTimeout(() => {
         doc.setFontSize(12);
         doc.autoTable(col, rows,{ startY: 120,
         styles:{
-          font: 'italic'
+          font: 'italic',
+          border:true
         } })
         doc.text(10,50,'DATOS DEL CLIENTE');
         doc.text(10,57,'Nombre: '+this.clientee.nombre);
