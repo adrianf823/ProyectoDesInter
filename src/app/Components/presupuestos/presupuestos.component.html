@@ -69,8 +69,8 @@
               <tr *ngFor="let m of clientesArray | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
           <td>{{m.nombre}}</td>
           <td>{{m.cliente}}</td>
-          <td>{{m.subtotal}}</td>
-          <td>{{m.total}}</td>
+          <td>{{m.subtotal}}€</td>
+          <td>{{m.total}}€</td>
           <td><button (click)="eliminarCliente(m,i)" class="btn btn-danger">Eliminar</button>&nbsp;&nbsp;
               <button (click)="modificarCliente(m,i)" class="btn btn-warning">Ver/Editar</button>&nbsp;&nbsp;
               <button (click)="descargarPDF(m,m.id)" class="btn btn-primary">Imprimir Factura</button></td>
